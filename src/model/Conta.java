@@ -3,22 +3,31 @@ package model;
 public abstract class Conta {
 
     protected int numero;
-    protected double saldo;
     protected Cliente cliente;
+    protected double saldo;
 
     public Conta(int numero, Cliente cliente){
-    }
-
-    public void depositar(double valor){
-    }
-
-    public abstract void sacar(double valor);
-
-    public double getSaldo(){
-        return 0;
+        this.numero = numero;
+        this.cliente = cliente;
     }
 
     public int getNumero(){
-        return 0;
+        return numero;
+    }
+
+    public double getSaldo(){
+        return saldo;
+    }
+
+    public void depositar(double valor){
+        saldo += valor;
+    }
+
+    public boolean sacar(double valor){
+        if(valor <= saldo){
+            saldo -= valor;
+            return true;
+        }
+        return false;
     }
 }
